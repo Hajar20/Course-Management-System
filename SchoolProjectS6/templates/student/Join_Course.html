@@ -1,0 +1,97 @@
+{% extends "student/base.html" %}
+{% load static %}
+
+{% block title %}
+  <title>Join New Course</title>
+{% endblock %}
+
+{% block sidebar %}
+<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'PFES6:student' %}?userId={{user.id}}">
+    <div class="sidebar-brand-icon">
+      Online Class
+    </div>
+    <div class="sidebar-brand-text mx-3"></div>
+  </a>
+  <hr class="sidebar-divider my-0">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'PFES6:student' %}?userId={{user.id}}">
+      <i class="fas fa-book"></i>
+      <span>My Courses</span></a>
+  </li>
+  <hr class="sidebar-divider">
+  <div class="sidebar-heading">
+    Actions
+  </div>
+  <li class="nav-item active">
+    <a class="nav-link" href="{% url 'PFES6:student_join_course' %}?userId={{user.id}}">
+      <i class="fas fa-plus-square"></i>
+      <span>Join Course</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'PFES6:student_to_do' %}?userId={{user.id}}">
+      <i class="fas fa-clipboard-check"></i>
+      <span>To do</span>
+    </a>
+  </li>
+  <hr class="sidebar-divider">
+  <div class="sidebar-heading">
+    Settings
+  </div>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'PFES6:student_profile' %}?userId={{user.id}}">
+      <i class="fas fa-user-edit"></i>
+      <span>Edit Profile</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>Logout</span>
+    </a>
+  </li>
+  <hr class="sidebar-divider">
+  <div class="version" id="version-ruangadmin"></div>
+</ul>
+{% endblock %}
+
+{% block content_block %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Join a New Course</h1>
+</div>
+<!-- Form Basic -->
+<div class="card mb-4" style="margin: 4rem 10vw;">
+  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+    <h6 class="m-0 font-weight-bold text-primary">Join Course</h6>
+  </div>
+  <div class="card-body">
+    <form method="POST" action="/student/join_course">
+      {% csrf_token %}
+      <input type="text" name="userId" value="{{user.id}}" hidden>
+      <div class="form-group">
+        {% if c is none and x is none %}
+        <label for="validationServer01">Course Code</label>
+        <input type="text" class="form-control" id="validationServer01"
+        placeholder="Code" name="codeC" required>
+        {% else %}
+          {% if c%}
+            <input type="text" class="form-control is-invalid" id="validationServer01"
+            placeholder="Code" name="codeC" required>
+            <div class="invalid-feedback">
+              Please provide a valid code.
+            </div>
+          {% else %}
+            <input type="text" class="form-control is-invalid" id="validationServer01"
+            placeholder="Code" name="codeC" required>
+            <div class="invalid-feedback">
+              You already joined this course.
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+      <input type="submit" value="Join" class="btn btn-primary">
+    </form>
+  </div>
+</div>
+{% endblock %}

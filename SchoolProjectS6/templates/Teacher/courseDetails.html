@@ -1,0 +1,181 @@
+{% extends "Teacher/base.html" %}
+} 
+{% block content %}
+          <div class="row" >
+                 <div class="col-lg-12 mb-4">
+              <!-- Simple Tables -->
+              <div class="card">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Courses File</h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Title</th>
+                        <th>Date of creation</th>
+                        <th>File to download</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     
+                     {% for c in courses %}
+                      <tr>
+                        <td>{{ c.desc }}</td>
+                        <td>{{ c.creationDateCourse }}</td>
+                        <td><a href="{{ c.courseFile.url }}" download>{{ c.courseFile }}</a></td>
+                        <td><a href="{% url 'PFES6:deleteCourseFile' %}?uId={{user.id}}&idC={{ classe.id }}&idFileC={{ c.id }}" class="btn btn-sm btn-primary">Delete</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer"></div>
+              </div>
+            </div>
+<br><br>
+
+      <div class="col-lg-12 mb-4">
+              <!-- Simple Tables -->
+              <div class="card">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">TD Files</h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Title</th>
+                        <th>Date of creation</th>
+                        <th>File to download</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     
+                     
+                      {% for td in tdFiles %}
+                      <tr>
+                        <td>{{ td.titleTd }}</td>
+                        <td>{{ td.creationDateTd }}</td>
+                        <td><a href="{{ td.tdFile.url }}" download>{{ td.tdFile }}</a></td>
+                        <td><a href="{% url 'PFES6:deleteTD' %}?uId={{user.id}}&idC={{ classe.id }}&idFileTD={{ td.id }}" class="btn btn-sm btn-primary">Delete</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer"></div>
+              </div>
+            </div>
+           
+            <br><br>
+		   <div class="col-lg-12 mb-4">
+              <!-- Simple Tables -->
+              <div class="card">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">TP Files</h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Title</th>
+                        <th>Date of creation</th>
+                        <th>File to download</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     
+                      {% for tp in tpFiles %}
+                      <tr>
+                        <td>{{ tp.titleTp }}</td>
+                        <td>{{ tp.creationDateTp }}</td>
+                        <td><a href="{{ tp.tpFile.url }}" download>{{ tp.tpFile }}</a></td>
+                        <td><a href="{% url 'PFES6:deleteTP' %}?uId={{user.id}}&idC={{ classe.id }}&idFileTP={{ tp.id }}" class="btn btn-sm btn-primary">Delete</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer"></div>
+              </div>
+            </div>
+			
+            <br><br>
+			<div class="col-lg-12 mb-4">
+              <!-- Simple Tables -->
+              <div class="card">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Correction File</h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Title</th>
+                        <th>Date of creation</th>
+                        <th>File to download</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     
+                     
+                      {% for corr in corrFiles %}
+                      <tr>
+                        <td>{{ corr.title }}</td>
+                        <td>{{ corr.creationDateTdTp }}</td>
+                        <td><a href="{{ corr.corrFile.url }}" download>{{ corr.corrFile }}</a></td>
+                        <td><a href="{% url 'PFES6:deleteCorr' %}?uId={{user.id}}&idC={{ classe.id }}&idFileCorr={{ corr.id }}" class="btn btn-sm btn-primary">Delete</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer"></div>
+              </div>
+            </div>
+            <br><br>
+		   <div class="col-lg-12 mb-4">
+              
+              <div class="card">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Home Work Files</h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>title</th>
+                        <th>Date of creation</th>
+                        <th>Homework file todo</th>
+                        <th>Student's homework</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     
+                      
+                {% for hm in homeWorks %}  
+                    {% if hm.TodoSFile == '' %}
+
+                    {% else %}
+                     <tr>
+                      <td>{{ hm.title }}</td>
+                      <td>{{ hm.creationDateTodo }}</td>
+                      <td><a href="{{ hm.TodoTFile.url }}" download>{{ hm.TodoTFile }}</a></td>
+                      <td><a href="{{ hm.TodoSFile.url }}" download>{{ hm.TodoSFile }}</a></td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer"></div>
+              </div>
+            </div>
+          </div>
+ {% endblock %}
+          

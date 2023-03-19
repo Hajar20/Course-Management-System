@@ -1,0 +1,52 @@
+
+{% extends "Teacher/base.html" %}
+
+{% load static %}
+
+
+        {% block content %}
+         <div class="d-sm-flex align-items-center justify-content-between mb-4">
+           
+            
+          </div>
+          <div class="row">
+          <div class="col-lg-12">
+              <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Students</h6>
+                </div>
+                <div class="table-responsive p-3">
+                  <table class="table align-items-center table-flush" id="dataTable">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Full name</th>
+                        <th>Picture</th>
+                       
+                      </tr>
+                    </thead>
+                
+                    <tbody>
+                      {% for s in myStudents %}
+                      
+
+                      <tr>
+                        <th>{{ s.userId.nom }} {{ s.userId.prenom }}</th>
+                        <th><img src="{{ s.userId.picture.url}}" height="80px" width="80px" ></th>
+                      </tr>
+             
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+       {% endblock %}
+
+
+   
+  {% block jsLinks %}
+  <script src="{% static 'teacherDesign/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'teacherDesign/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+  {% endblock %}
+  
